@@ -7,9 +7,11 @@ import Routes from './routes/Routes';
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={Routes} />
-    </QueryClientProvider>
+    <div className='font-inter'>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={Routes} />
+      </QueryClientProvider>
+    </div>
   );
 }
 
