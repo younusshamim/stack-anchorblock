@@ -7,8 +7,11 @@ module.exports = {
       inter: ["Inter", "sans-serif"],
     },
     colors: {
+      "primary-light": "#D6BBFB",
+      "primary-extra-light": "#EBE3F7",
       "success-light": "#ECFDF3",
       "error-light": "#FDA29B",
+      "error-extra-light": "#FDE3E0",
     },
   },
   plugins: [require("daisyui")],

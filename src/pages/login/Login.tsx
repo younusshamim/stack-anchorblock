@@ -3,12 +3,22 @@ import { deepLogo } from "../../assets";
 import PrimaryButton from "../../components/PrimaryButton";
 import Input from "../../components/Input";
 import { Link } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form"
+
+type Inputs = {
+  email: string
+  password: string
+}
 
 const Login: React.FC = () => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>()
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -20,22 +30,29 @@ const Login: React.FC = () => {
 
         <h2 className="text-[20px] text-[#404040] font-semibold mb-[52px]">Sign In to continue with Stack</h2>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[20px]">
             <Input
               label="Email"
-              type="email"
+              type="text"
               placeholder="Enter Email"
+              register={register}
+              registerKey="email"
+              validation={{ required: 'Email Address is required' }}
+              error={errors?.email?.message}
             />
 
             <Input
               label="Password"
               type="password"
               placeholder="Enter Password"
+              register={register}
+              registerKey="password"
+              validation={{ required: 'Password is required' }}
+              error={errors?.password?.message}
             />
 
-
-            <PrimaryButton className="mt-[10px]">Sign In</PrimaryButton>
+            <PrimaryButton className="mt-[10px]" type="submit">Sign In</PrimaryButton>
           </div>
         </form>
 
