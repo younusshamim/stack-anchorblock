@@ -4,7 +4,6 @@ import { lightLogo, photo } from '../../assets';
 import navbarData from '../../data/navbarData';
 import { MdOutlineSettings } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { FiBell } from "react-icons/fi";
 
 
@@ -27,10 +26,10 @@ const Navbar: React.FC = () => {
                         <h1 className='text-[20px] font-bold'>Stack</h1>
                     </div>
 
-                    <div>
+                    <div className='flex gap-1'>
                         {navbarData.map(menu => (
                             <Link to={menu.link} key={menu.id}>
-                                <span className={`py-[10px] px-[12px] rounded-[6px] ${pathname === menu.link && 'bg-[#7F56D9]'}`}>
+                                <span className={`py-[10px] px-[12px] font-[500] rounded-[6px] ${pathname === menu.link && 'bg-[#7F56D9]'}`}>
                                     {menu.item}
                                 </span>
                             </Link>

@@ -6,7 +6,9 @@ const MainLayout: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <div className='w-[1280px] mx-auto my-[33px]'>
+                <Outlet />
+            </div>
         </>
     );
 };

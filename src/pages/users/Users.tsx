@@ -1,10 +1,14 @@
 import React from "react";
+import UsersHeading from "./UsersHeading";
+import UsersList from "./UsersList";
 
-interface Props {
-}
-
-const Users: React.FC<Props> = (props) => {
-  return <div>Users</div>;
+const Users: React.FC = () => {
+  return (
+    <>
+      <UsersHeading />
+      <UsersList />
+    </>
+  )
 };
 
 export default Users;
