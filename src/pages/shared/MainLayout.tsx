@@ -1,12 +1,13 @@
 import React from 'react';
+import Navbar from './Navbar';
 import { Outlet } from 'react-router-dom';
 
 const MainLayout: React.FC = () => {
     return (
-        <div>
-            <p>Main</p>
+        <>
+            <Navbar />
             <Outlet />
-        </div>
+        </>
     );
 };
 

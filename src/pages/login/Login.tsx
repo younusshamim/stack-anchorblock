@@ -4,6 +4,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import Input from "../../components/Input";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form"
+import Brand from "../shared/Brand";
 
 type Inputs = {
   email: string
@@ -23,12 +24,11 @@ const Login: React.FC = () => {
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="w-[444px] shadow-md border border-solid border-[#EEE] h-fit p-[62px] rounded-[16px]">
-        <div className="flex items-baseline gap-2 mb-[20px]">
-          <img src={deepLogo} alt="Stack Logo" className="w-[50px]" />
-          <h1 className="text-[28px] text-[#404040] font-bold">Stack</h1>
-        </div>
+        <Brand />
 
-        <h2 className="text-[20px] text-[#404040] font-semibold mb-[52px]">Sign In to continue with Stack</h2>
+        <h2 className="text-[20px]  text-[#404040] font-semibold mt-[20px] mb-[52px]">
+          Sign In to continue with Stack
+        </h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[20px]">

@@ -5,6 +5,7 @@ import Users from "../pages/users/Users";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import MainLayout from "../pages/shared/MainLayout";
+import NotFound from "../pages/notFound/NotFound";
 
 const Routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const Routes = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
