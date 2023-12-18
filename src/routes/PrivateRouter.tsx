@@ -1,32 +1,21 @@
-// import { ReactNode } from "react";
-// import { Navigate, useLocation } from "react-router-dom";
+import React, { ReactElement } from 'react';
+import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectToken } from '../redux/authSlice';
 
-// interface PrivateRouteProps {
-//     children: ReactNode;
-// }
+interface Props {
+    children: ReactElement;
+}
 
-// const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-//     const loggedIn = true;
-//     const location = useLocation();
+const PrivateRoute: React.FC<Props> = ({ children }) => {
+    const token = useSelector(selectToken)
+    const location = useLocation();
 
-//     if (loggedIn) {
-//         return children;
-//     }
+    if (token) {
+        return children;
+    }
 
-//     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
-// };
-
-// export default PrivateRoute;
-
-
-import React from 'react';
-
-const PrivateRouter = () => {
-    return (
-        <div>
-            Private
-        </div>
-    );
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
-export default PrivateRouter;
+export default PrivateRoute;

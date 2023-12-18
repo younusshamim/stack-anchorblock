@@ -7,7 +7,7 @@ interface Props {
 const Error: React.FC<Props> = ({ message }) => {
     return (
         <div className='w-full h-[50vh] flex items-center justify-center'>
-            <p className='font-[600]'>{message}</p>
+            <p className='font-medium text-error'>{message}</p>
         </div>
     );
 };

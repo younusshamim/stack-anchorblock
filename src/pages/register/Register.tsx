@@ -5,8 +5,6 @@ import Progress from "./Progress";
 import PrimaryButton from "../../components/PrimaryButton";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { handleRegister } from '../../redux/authSlice'
 
 type Inputs = {
   email: string
@@ -21,10 +19,7 @@ const Register: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>()
 
-  const dispatch = useDispatch();
-
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    dispatch(handleRegister({ email: data.email, password: data.password }) as any);
   };
 
   return (

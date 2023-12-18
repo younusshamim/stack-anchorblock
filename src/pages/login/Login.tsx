@@ -1,10 +1,12 @@
-import React from "react";
-import { deepLogo } from "../../assets";
+import React, { useState } from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import Input from "../../components/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form"
 import Brand from "../shared/Brand";
+import { useOnLoginMutation } from "../../utils/api";
+import { useDispatch } from "react-redux";
+import { setLoggedInUser } from "../../redux/authSlice";
 
 type Inputs = {
   email: string
@@ -12,6 +14,10 @@ type Inputs = {
 }
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch()
+  const [onLogin, { isLoading, isError }] = useOnLoginMutation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -19,7 +25,17 @@ const Login: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const result = await onLogin({ email: data.email, password: data.password })
+      if ('data' in result && result.data?.token) {
+        dispatch(setLoggedInUser(result.data?.token));
+        navigate('/users')
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -52,7 +68,13 @@ const Login: React.FC = () => {
               error={errors?.password?.message}
             />
 
-            <PrimaryButton className="mt-[10px]" type="submit">Sign In</PrimaryButton>
+            <PrimaryButton className="mt-[10px]" type="submit"> {isLoading ? 'Signing In..' : 'Sign In'}</PrimaryButton>
+
+            {isError && (
+              <p className="text-center font-medium text-error">
+                {'An unexpected error occurred'}
+              </p>
+            )}
           </div>
         </form>
 

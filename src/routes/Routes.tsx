@@ -6,12 +6,15 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import MainLayout from "../pages/shared/MainLayout";
 import NotFound from "../pages/notFound/NotFound";
+import PrivateRoute from "./PrivateRouter";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: (
-      <MainLayout />
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
     ),
     children: [
       {
