@@ -23,10 +23,10 @@ const Login: React.FC = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="w-[444px] shadow-md border border-solid border-[#EEE] h-fit p-[62px] rounded-[16px]">
+      <div className="w-[444px] shadow-lg border border-solid border-[#EEE] h-fit p-[62px] rounded-[16px]">
         <Brand />
 
-        <h2 className="text-[20px]  text-[#404040] font-semibold mt-[20px] mb-[52px]">
+        <h2 className="text-[20px]  text-[#404040] font-[600] mt-[20px] mb-[52px]">
           Sign In to continue with Stack
         </h2>
 
@@ -38,7 +38,7 @@ const Login: React.FC = () => {
               placeholder="Enter Email"
               register={register}
               registerKey="email"
-              validation={{ required: 'Email Address is required' }}
+              validation={{ required: 'This field is required' }}
               error={errors?.email?.message}
             />
 
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
               placeholder="Enter Password"
               register={register}
               registerKey="password"
-              validation={{ required: 'Password is required' }}
+              validation={{ required: 'This field is required' }}
               error={errors?.password?.message}
             />
 
@@ -56,7 +56,7 @@ const Login: React.FC = () => {
           </div>
         </form>
 
-        <p className="mt-[27px] text-[#B0B7C3]">Don't have an account ?
+        <p className="mt-[27px] text-[#B0B7C3] font-[500]">Don't have an account ?
           <Link to="/register" className="text-[#377DFF] ml-1 cursor-pointer">Sign Up</Link>
         </p>
       </div>

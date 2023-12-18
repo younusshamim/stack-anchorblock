@@ -23,13 +23,13 @@ const Register: React.FC = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="w-[444px] shadow-md border border-solid border-[#EEE] h-fit p-[62px] rounded-[16px]">
+      <div className="w-[444px] shadow-lg border border-solid border-[#EEE] h-fit p-[62px] rounded-[16px]">
         <div className="flex items-baseline gap-2 mb-[20px]">
           <img src={deepLogo} alt="Stack Logo" className="w-[50px]" />
           <h1 className="text-[28px] text-[#404040] font-bold">Stack</h1>
         </div>
 
-        <h2 className="text-[20px] text-[#404040] font-semibold mb-[52px]">Sign up to join with Stack</h2>
+        <h2 className="text-[20px] text-[#404040] font-[600] mb-[52px]">Sign up to join with Stack</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[20px]">
@@ -39,7 +39,7 @@ const Register: React.FC = () => {
               placeholder="Enter Email"
               register={register}
               registerKey="email"
-              validation={{ required: 'Email Address is required' }}
+              validation={{ required: 'This field is required' }}
               error={errors?.email?.message}
             />
 
@@ -49,7 +49,7 @@ const Register: React.FC = () => {
               placeholder="Enter Password"
               register={register}
               registerKey="password"
-              validation={{ required: 'Password is required' }}
+              validation={{ required: 'This field is required' }}
               error={errors?.password?.message}
             />
 
@@ -59,7 +59,7 @@ const Register: React.FC = () => {
           </div>
         </form>
 
-        <p className="mt-[27px] text-[#B0B7C3]">Already have an account?
+        <p className="mt-[27px] text-[#B0B7C3]  font-[500]">Already have an account?
           <Link to="/login" className="text-[#377DFF] ml-1 cursor-pointer">Sign In</Link>
         </p>
       </div>

@@ -12,7 +12,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<Props> = ({ label, register, registerKey, validation, error, ...rest }) => {
     return (
         <label className="form-control w-full max-w-xs gap-[6px]">
-            <span className="text-gray-700 font-[14px]">{label}</span>
+            <span className="text-gray-700 font-[14px] font-[500]">{label}</span>
             <input
                 {...rest}
                 {...(register(registerKey, { ...validation }))}
@@ -21,7 +21,7 @@ const Input: React.FC<Props> = ({ label, register, registerKey, validation, erro
                         : 'border-primary-light shadow-outline-primary-extra-light ring-primary-extra-light'}`}
             />
 
-            {error && <span className="font-light text-[14px] text-error">
+            {error && <span className="text-[14px] text-error font-[400]">
                 {error}
             </span>}
         </label>
