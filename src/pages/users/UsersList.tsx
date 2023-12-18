@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { photo } from '../../assets';
+import React from 'react';
 import { IoMdArrowDown } from "react-icons/io";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
@@ -29,7 +28,7 @@ const UsersList: React.FC<Props> = ({ data, page, total_pages, setCurrPage }) =>
                             <label className='flex items-center gap-1'>
                                 <input
                                     type="checkbox"
-                                    className="checkbox mr-2 checkbox-primary checkbox-sm rounded-md "
+                                    className="checkbox mr-2  checkbox-sm rounded-md border-[1.5px] border-[#7F56D9] checked:border-[#7F56D9] [--chkbg:theme(colors.white)] [--chkfg:#7F56D9]"
                                 />
                                 <span className='text-gray-500 text-[12px] font-[500]'>User Info</span>
                                 <IoMdArrowDown className='text-gray-500 text-[16px]' />
@@ -45,7 +44,7 @@ const UsersList: React.FC<Props> = ({ data, page, total_pages, setCurrPage }) =>
                         <tr className='border-b-gray-200' key={index}>
                             <td className='flex items-center gap-4 py-[16px] px-[24px]'>
                                 <label>
-                                    <input type="checkbox" className="checkbox checkbox-primary checkbox-sm rounded-md" />
+                                    <input type="checkbox" className="checkbox checkbox-sm rounded-md border-[1.5px] border-[#7F56D9] checked:border-[#7F56D9] [--chkbg:theme(colors.white)] [--chkfg:#7F56D9]" />
                                 </label>
 
                                 <div className="flex items-center gap-3">
