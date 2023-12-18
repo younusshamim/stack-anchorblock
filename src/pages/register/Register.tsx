@@ -3,8 +3,11 @@ import { deepLogo } from "../../assets";
 import Input from "../../components/Input";
 import Progress from "./Progress";
 import PrimaryButton from "../../components/PrimaryButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useOnRegisterMutation } from "../../utils/api";
+import { useDispatch } from "react-redux";
+import { setLoggedInUser } from "../../redux/authSlice";
 
 type Inputs = {
   email: string
@@ -12,6 +15,10 @@ type Inputs = {
 }
 
 const Register: React.FC = () => {
+  const dispatch = useDispatch()
+  const [onRegister, { isLoading, isError }] = useOnRegisterMutation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -19,7 +26,16 @@ const Register: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const result = await onRegister({ email: data.email, password: data.password })
+      if ('data' in result && result.data?.token) {
+        dispatch(setLoggedInUser(result.data?.token));
+        navigate('/users')
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -56,7 +72,14 @@ const Register: React.FC = () => {
 
 
             <Progress />
-            <PrimaryButton type="submit">Sign Up</PrimaryButton>
+
+            <PrimaryButton type="submit"> {isLoading ? 'Signing In..' : 'Sign Up'} </PrimaryButton>
+
+            {isError && (
+              <p className="text-center font-medium text-error">
+                {'An unexpected error occurred'}
+              </p>
+            )}
           </div>
         </form>
 
