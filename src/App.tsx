@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import { QueryClientProvider } from 'react-query';
-import queryClient from './config/queryClient';
 import { RouterProvider } from 'react-router-dom';
 import Routes from './routes/Routes';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
     <div className='font-inter'>
-      <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <RouterProvider router={Routes} />
-      </QueryClientProvider>
+      </Provider>
     </div>
   );
 }

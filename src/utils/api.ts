@@ -1,12 +1,30 @@
-import axios from "axios";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
-});
+export const api = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://reqres.in/' }),
+  
+  endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: (page) => `/api/users?page=${page}`,
+    }),
 
-instance.interceptors.request.use(
-  (config) => config,
-  (error) => Promise.reject(error)
-);
+    onRegister: builder.mutation({
+      query: (payload) => ({
+        url: '/api/register',
+        method: 'POST',
+        body: payload,
+      }),
+    }),
 
-export default instance;
+    onLogin: builder.mutation({
+      query: (payload) => ({
+        url: '/api/login',
+        method: 'POST',
+        body: payload,
+      }),
+    }),
+  }),
+})
+
+export const { useGetUsersQuery, useOnRegisterMutation, useOnLoginMutation  } = api
