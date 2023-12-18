@@ -1,7 +1,7 @@
 import React from "react";
 import { deepLogo } from "../../assets";
 import Input from "../../components/Input";
-import Progress from "./Progress";
+import PasswordStrength from "./PasswordStrength";
 import PrimaryButton from "../../components/PrimaryButton";
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -25,6 +25,8 @@ const Register: React.FC = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>()
+
+  const password = watch('password');
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -70,10 +72,10 @@ const Register: React.FC = () => {
               error={errors?.password?.message}
             />
 
+            {password && <PasswordStrength password={password} />}
 
-            <Progress />
 
-            <PrimaryButton type="submit"> {isLoading ? 'Signing In..' : 'Sign Up'} </PrimaryButton>
+            <PrimaryButton type="submit" className="mt-[10px]"> {isLoading ? 'Signing In..' : 'Sign Up'} </PrimaryButton>
 
             {isError && (
               <p className="text-center font-medium text-error">
